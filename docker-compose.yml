@@ -1,0 +1,16 @@
+soma:
+  image: parana/web-xe-ubuntu
+  links:
+    - db:mysql
+  ports:
+    - 1443:8080
+  environment:
+    SOMA_DB_NAME: soma
+
+db:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: secret
+
+# 
+# Execute : boot2docker start e depois docker-compose up para iniciar o SOMA
