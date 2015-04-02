@@ -18,19 +18,23 @@
     
 
 ### Instalando o Docker Composer
+
     curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
     
 ### Baixando definição do Repositório GIT
+
     mkdir ~/tmp
     cd ~/tmp
     git clone https://github.com/joao-parana/soma-docker.git
     cd soma-docker
 
 ### Iniciando o SOMA
+
     docker-compose up
 
 ### Abrindo no Browser
+
     open http://`boot2docker ip`:1443
 
 > Thats all !
