@@ -21,7 +21,41 @@
 
     curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
+  
+### Criando shell utilitária
+    vi ~/bin/docker-clean  # coloque o conteúdo abaixo no arquivo e salve
     
+    #!/bin/sh                                                                                                                                                                            
+
+    remove_dangling() {
+      echo "Removing dangling images ..."
+      docker rmi $(docker images -f dangling=true -q)
+    }
+
+
+    remove_stopped_containers() {
+       echo "Removing stopped containers ..."
+       docker rm $(docker ps -qa)
+    }
+
+    case $1 in
+       images)
+           remove_dangling
+           ;;
+       containers)
+           read -p "Are you sure you want to remove all stopped containers?" -n 1 -r
+           echo  #
+           if [[ $REPLY =~ ^[Yy]$ ]]
+           then
+               remove_stopped_containers
+           fi
+           ;;
+       *)
+           echo "usage: docker-clean containers|images   -  containers - removes all stopped containers it can.   images - removes dangling (un-needed) image layers - images you no longer need"
+           ;;
+
+    esac
+
 ### Baixando definição do Repositório GIT
 
     mkdir ~/tmp
@@ -36,6 +70,18 @@
 ### Abrindo no Browser
 
     open http://`boot2docker ip`:1443
+
+### Procurando algo nos logs
+    echo $(docker logs somadocker_db_1 | grep password)
+    echo $(docker logs somadocker_soma_1  | grep db-server)
+
+### Parando os Contêineres
+    docker stop somadocker_soma_1 
+    docker stop somadocker_db_1
+
+### Limpando o ambiente
+    docker-clean containers
+    docker-clean images
 
 > Thats all !
 
