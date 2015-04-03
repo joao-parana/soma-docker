@@ -24,7 +24,7 @@
   
 ### Criando shell utilitária
     vi ~/bin/docker-clean  # coloque o conteúdo abaixo no arquivo e salve
-    
+
     #!/bin/sh                                                                                                                                                                            
 
     remove_dangling() {
@@ -67,7 +67,18 @@
 
     docker-compose up
 
-### Abrindo no Browser
+### Listando os Serviços
+    docker-compose ps
+          Name                    Command              State   Ports                                 
+    -------------------------------------------------------------------------------------------------------------------------------
+    somadocker_db_1     /docker-entrypoint.sh mysqld   Up      3306/tcp
+    somadocker_soma_1   /bin/sh -c /bin/start-oracle   Up      0.0.0.0:1521->1521/tcp, 0.0.0.0:4460->22/tcp, 0.0.0.0:1443->8080/tcp
+
+### Acessando o Database
+
+    sqlplus system/oracle@`boot2docker ip`/XE
+
+### Abrindo no Browser (no futuro)
 
     open http://`boot2docker ip`:1443
 
