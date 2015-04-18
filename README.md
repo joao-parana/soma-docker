@@ -1,6 +1,6 @@
-# poc-docker
+# soma-docker
 
-### Instalando o Docker no MAC OSX
+### Instalando o Docker 1.6 (ou superior) no MAC OSX
 
 > No Linux é parecido
 
@@ -17,9 +17,9 @@
     # Just do it ! (veja os exports acima. Na sua maquina pode ser diferente)
     
 
-### Instalando o Docker Composer
+### Instalando o Docker Composer 1.2 no Linux ou Mac OSX
 
-    curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
   
 ### Criando shell utilitária
